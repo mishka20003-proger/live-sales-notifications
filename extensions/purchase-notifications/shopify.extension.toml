@@ -1,0 +1,49 @@
+api_version = "2024-10"
+
+[[extensions]]
+uid = "f65b73c3-8c98-038b-284f-d33aba11d91598a2cd18"
+type = "theme"
+name = "Purchase Notifications"
+handle = "purchase-notifications"
+
+[extensions.settings]
+  [[extensions.settings.fields]]
+  id = "enabled"
+  type = "checkbox"
+  label = "Enable notifications"
+  default = true
+  info = "Show real-time purchase notifications to visitors"
+
+  [[extensions.settings.fields]]
+  id = "display_duration"
+  type = "number"
+  label = "Display duration (seconds)"
+  default = 5
+  info = "How long each notification stays visible"
+
+  [[extensions.settings.fields]]
+  id = "interval"
+  type = "number"
+  label = "Interval between notifications (seconds)"
+  default = 10
+  info = "Time between showing notifications"
+
+  [[extensions.settings.fields]]
+  id = "position"
+  type = "select"
+  label = "Position"
+  default = "bottom-left"
+  options = [
+    { label = "Bottom Left", value = "bottom-left" },
+    { label = "Bottom Right", value = "bottom-right" },
+    { label = "Top Left", value = "top-left" },
+    { label = "Top Right", value = "top-right" }
+  ]
+
+  [[extensions.settings.fields]]
+  id = "max_display"
+  type = "number"
+  label = "Max recent purchases to show"
+  default = 10
+  info = "Limit how many recent purchases to cycle through"
+

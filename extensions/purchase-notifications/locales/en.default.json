@@ -1,0 +1,10 @@
+{
+  "purchase_notifications": {
+    "just_purchased": "just purchased",
+    "minutes_ago": "{count} minutes ago",
+    "hours_ago": "{count} hours ago",
+    "days_ago": "{count} days ago",
+    "just_now": "just now"
+  }
+}
+

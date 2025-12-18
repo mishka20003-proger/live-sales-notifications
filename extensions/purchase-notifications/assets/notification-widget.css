@@ -1,0 +1,266 @@
+/**
+ * Purchase Notifications Widget Styles
+ * Modern, clean design with smooth animations
+ */
+
+.purchase-notifications {
+  position: fixed;
+  z-index: 999999;
+  pointer-events: none;
+}
+
+/* Position variants */
+.purchase-notifications.bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.purchase-notifications.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.purchase-notifications.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.purchase-notifications.top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.purchase-notifications.top-center {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Notification card */
+.purchase-notification {
+  pointer-events: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  margin-bottom: 12px;
+  min-width: 320px;
+  max-width: 380px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.purchase-notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Size variants */
+.purchase-notification.size-small {
+  min-width: 280px;
+  max-width: 320px;
+  padding: 12px;
+}
+
+.purchase-notification.size-small .notification-icon {
+  font-size: 24px;
+}
+
+.purchase-notification.size-small .notification-header {
+  font-size: 13px;
+}
+
+.purchase-notification.size-small .notification-product {
+  font-size: 12px;
+}
+
+.purchase-notification.size-small .notification-meta {
+  font-size: 11px;
+}
+
+.purchase-notification.size-medium {
+  min-width: 320px;
+  max-width: 380px;
+  padding: 16px;
+}
+
+.purchase-notification.size-large {
+  min-width: 380px;
+  max-width: 450px;
+  padding: 20px;
+}
+
+.purchase-notification.size-large .notification-icon {
+  font-size: 40px;
+}
+
+.purchase-notification.size-large .notification-header {
+  font-size: 16px;
+}
+
+.purchase-notification.size-large .notification-product {
+  font-size: 14px;
+}
+
+.purchase-notification.size-large .notification-meta {
+  font-size: 13px;
+}
+
+/* Content layout */
+.notification-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+}
+
+/* Icon */
+.notification-icon {
+  font-size: 32px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Text content */
+.notification-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-header {
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.notification-header strong {
+  color: #000000;
+  font-weight: 600;
+}
+
+.notification-product {
+  font-size: 13px;
+  color: #666666;
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notification-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.notification-price {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.notification-time {
+  color: #999999;
+}
+
+/* Close button */
+.notification-close {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #999999;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.notification-close:hover {
+  color: #333333;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .purchase-notifications {
+    left: 10px !important;
+    right: 10px !important;
+    width: auto;
+  }
+
+  .purchase-notification {
+    min-width: auto;
+    max-width: 100%;
+  }
+
+  .notification-icon {
+    font-size: 28px;
+  }
+
+  .notification-header {
+    font-size: 13px;
+  }
+
+  .notification-product {
+    font-size: 12px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .purchase-notification {
+    background: #1f2937;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .notification-header {
+    color: #e5e7eb;
+  }
+
+  .notification-header strong {
+    color: #ffffff;
+  }
+
+  .notification-product {
+    color: #9ca3af;
+  }
+
+  .notification-time {
+    color: #6b7280;
+  }
+
+  .notification-close {
+    color: #9ca3af;
+  }
+
+  .notification-close:hover {
+    color: #e5e7eb;
+  }
+}
+
+/* Smooth entrance animation for multiple notifications */
+.purchase-notifications.bottom-left .purchase-notification,
+.purchase-notifications.bottom-right .purchase-notification {
+  transform-origin: bottom;
+}
+
+.purchase-notifications.top-left .purchase-notification,
+.purchase-notifications.top-right .purchase-notification {
+  transform-origin: top;
+}
+
+/* Hover effect */
+.purchase-notification:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+

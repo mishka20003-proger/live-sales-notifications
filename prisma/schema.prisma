@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long
+// enough when changing adapters.
+// See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id                  String    @id
+  shop                String
+  state               String
+  isOnline            Boolean   @default(false)
+  scope               String?
+  expires             DateTime?
+  accessToken         String
+  userId              BigInt?
+  firstName           String?
+  lastName            String?
+  email               String?
+  accountOwner        Boolean   @default(false)
+  locale              String?
+  collaborator        Boolean?  @default(false)
+  emailVerified       Boolean?  @default(false)
+  refreshToken        String?
+  refreshTokenExpires DateTime?
+}
+
+model Order {
+  id              String   @id @default(uuid())
+  shopifyOrderId  String   @unique
+  orderNumber     String
+  shop            String
+  totalPrice      String
+  currency        String
+  customerName    String?
+  createdAt       DateTime @default(now())
+  
+  @@index([shop, createdAt])
+}
+
+model AppSettings {
+  id                    String   @id @default(uuid())
+  shop                  String   @unique
+  
+  // Notification Settings
+  enabled               Boolean  @default(true)
+  position              String   @default("bottom-left")  // bottom-left, bottom-right, top-center
+  displayDuration       Int      @default(5)              // seconds
+  displayInterval       Int      @default(10)             // seconds between notifications
+  maxNotifications      Int      @default(10)             // max number to display per session
+  
+  // Data Source Settings (NEW)
+  dataSource            String   @default("real")         // "real" or "fake"
+  fakeInterval          Int      @default(10)             // 5, 10, 15, 30 seconds
+  fakePriceMin          Float    @default(10.0)           // minimum price for fake orders
+  fakePriceMax          Float    @default(200.0)          // maximum price for fake orders
+  fakePriceMode         String   @default("random")       // "random" or "real_products"
+  size                  String   @default("medium")       // "small", "medium", "large"
+  
+  // Display Settings
+  showCustomerName      Boolean  @default(true)
+  showOrderNumber       Boolean  @default(true)
+  showTotalPrice        Boolean  @default(true)
+  showProductImage      Boolean  @default(false)
+  
+  // Timing Settings
+  initialDelay          Int      @default(5)              // seconds before first notification
+  ordersTimeframe       Int      @default(7)              // days of orders to show
+  
+  // Advanced Settings
+  hideOnMobile          Boolean  @default(false)
+  hideOnSpecificPages   String?                           // JSON array of page paths to hide on
+  customCSS             String?                           // Custom CSS overrides
+  
+  // Analytics (NEW)
+  totalShows            Int      @default(0)              // total notification shows counter
+  
+  updatedAt             DateTime @updatedAt
+  createdAt             DateTime @default(now())
+  
+  @@index([shop])
+}

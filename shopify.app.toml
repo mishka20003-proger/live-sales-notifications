@@ -1,0 +1,36 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "4a3dceaa2b12f1110159f1f117057f06"
+name = "live-sales-notifications"
+application_url = "https://venially-uncontumacious-pablo.ngrok-free.dev"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2026-01"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+  [[webhooks.subscriptions]]
+  topics = [ "orders/create" ]
+  uri = "/webhooks/orders/create"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,read_orders"
+
+[app_proxy]
+url = "https://venially-uncontumacious-pablo.ngrok-free.dev"
+subpath = "proxy"
+prefix = "apps"
+
+[auth]
+redirect_urls = [ "https://venially-uncontumacious-pablo.ngrok-free.dev/api/auth" ]

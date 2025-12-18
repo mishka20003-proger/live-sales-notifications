@@ -1,0 +1,88 @@
+{% comment %}
+  Purchase Notifications Widget
+  Shows real-time purchase notifications to storefront visitors
+{% endcomment %}
+
+{% if block.settings.enabled %}
+<div 
+  id="purchase-notifications-widget" 
+  class="purchase-notifications"
+  data-shop="{{ shop.permanent_domain }}"
+  data-position="{{ block.settings.position }}"
+  data-duration="{{ block.settings.display_duration }}"
+  data-interval="{{ block.settings.interval }}"
+  data-max-display="{{ block.settings.max_display }}"
+>
+  <!-- Notifications will be injected here by JavaScript -->
+</div>
+
+<link rel="stylesheet" href="{{ 'notification-widget.css' | asset_url }}" media="print" onload="this.media='all'">
+<script src="{{ 'notification-widget.js' | asset_url }}" defer></script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Purchase Notifications",
+  "target": "body",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable notifications",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "display_duration",
+      "label": "Display duration (seconds)",
+      "min": 3,
+      "max": 15,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "interval",
+      "label": "Interval between notifications (seconds)",
+      "min": 5,
+      "max": 60,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "bottom-left",
+          "label": "Bottom Left"
+        },
+        {
+          "value": "bottom-right",
+          "label": "Bottom Right"
+        },
+        {
+          "value": "top-left",
+          "label": "Top Left"
+        },
+        {
+          "value": "top-right",
+          "label": "Top Right"
+        }
+      ],
+      "default": "bottom-left"
+    },
+    {
+      "type": "range",
+      "id": "max_display",
+      "label": "Max recent purchases to show",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "default": 10
+    }
+  ]
+}
+{% endschema %}
+
