@@ -4,8 +4,8 @@ services:
     env: node
     region: oregon
     plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npx prisma migrate deploy && npm run start
     envVars:
       - key: NODE_ENV
         value: production
@@ -15,6 +15,8 @@ services:
         sync: false
       - key: SCOPES
         value: write_products,read_orders
+      - key: HOST
+        value: 0.0.0.0
       - key: DATABASE_URL
         fromDatabase:
           name: live-sales-notifications-db
@@ -22,6 +24,7 @@ services:
 
 databases:
   - name: live-sales-notifications-db
+    databaseName: live_sales_notifications
     region: oregon
     plan: free
 
