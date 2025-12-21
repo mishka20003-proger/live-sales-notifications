@@ -38,21 +38,15 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { session } = await authenticate.admin(request);
 
   // Защита: только для разработчика
-  // Замени на свой shop или email
-  const developerShops = [
-    "test-store-1100000000000000000000000000000002894.myshopify.com",
-    // Добавь сюда свои магазины для доступа к админке
-    // Например: "my-dev-store.myshopify.com"
-  ];
+  // Проверяем по email разработчика из переменной окружения
+  const adminEmail = process.env.ADMIN_EMAIL || "mishka20003@gmail.com";
   
-  // Или используй переменную окружения
-  const adminShop = process.env.ADMIN_SHOP;
-  if (adminShop) {
-    developerShops.push(adminShop);
-  }
-
-  if (!developerShops.includes(session.shop)) {
-    throw new Response("Access denied", { status: 403 });
+  // Получаем email текущего пользователя
+  const currentUserEmail = session.email || "";
+  
+  // Если email не совпадает - доступ запрещен
+  if (currentUserEmail.toLowerCase() !== adminEmail.toLowerCase()) {
+    throw new Response("Access denied. Only developer can access this page.", { status: 403 });
   }
 
   // Получаем все настройки всех магазинов
