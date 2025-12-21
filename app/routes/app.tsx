@@ -27,6 +27,7 @@ export default function App() {
         <Link to="/app/live-orders">🔴 Live Orders</Link>
         <Link to="/app/storefront-notifications">🛍️ Storefront Notifications</Link>
         <Link to="/app/settings">⚙️ Settings</Link>
+        <Link to="/app/admin">👨‍💼 Admin Dashboard</Link>
         <Link to="/app/additional">Additional page</Link>
       </NavMenu>
       <Outlet />
